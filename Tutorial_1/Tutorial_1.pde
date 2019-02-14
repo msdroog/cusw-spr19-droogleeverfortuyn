@@ -1,17 +1,33 @@
 //Step 1: Create/Allocate memory for your Person
 ArrayList<Person> people;
+ArrayList<Connection> frands;
 
 // Run once
 void setup(){
   size(800, 700);
   
   people = new ArrayList<Person>();
+  frands = new ArrayList<Connection>();
   
   for(int i=0; i<10; i++) {
   Person p = new Person("Person" + i, str(int(random(1, 5))));
   p.randomLocation();
   people.add(p);
   }
+  
+  //who are frands
+  for(Person origin: people) {
+    for(Person destination: people) {
+      //is peron referencing themself
+      if (!origin.name.equals(destination.name)) {
+        //are orgin and dest same year?
+        if (origin.year.equals(destination.year)){
+        frands.add(new Connection(origin, destination, "frands"));
+        }
+      }
+    }
+  }
+  println(frands.size());
 }
 
 //Runs over and over at 60FPS
@@ -25,6 +41,10 @@ void draw() {
   for (Person p: people) {
     p.update(); //update location if selected
     p.drawPerson();
+  }
+  
+    for (Connection c: frands) {
+    c.draw();
   }
 
 }
