@@ -20,17 +20,17 @@ class Ball {
     screenLocation.y = screenLocation.y + yspeed;
     
     if (screenLocation.x > width) {
-      xspeed = -10;
+      xspeed = -xspeed;
     }
     
      if (screenLocation.x < 0) {
-      xspeed = 10;
+      xspeed = -xspeed;
     }
      if (screenLocation.y > height) {
-      yspeed = -10;
+      yspeed = -yspeed;
     }
      if (screenLocation.y < 0) {
-      yspeed = 10;
+      yspeed = -yspeed;
     }
   }
 }
