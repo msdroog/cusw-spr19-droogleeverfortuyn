@@ -1,5 +1,36 @@
 class Ball {
   PVector screenLocation;
-  int size;
+  float radius = random(0, height/4);
+  float R = random(255);
+  float G = random (255);
+  float B = random (255);
+  float xspeed = random(-10, 10);
+  float yspeed = random(-10, 10);
   
-  Ball(
+  Ball() {
+    screenLocation = new PVector(random(width), random(height));
+  }
+  
+  void drawBall() {
+    noStroke(); //no circle outline
+    ellipse(screenLocation.x, screenLocation.y, radius, radius);
+    fill(R, G, B);
+    
+    screenLocation.x = screenLocation.x + xspeed;
+    screenLocation.y = screenLocation.y + yspeed;
+    
+    if (screenLocation.x > width) {
+      xspeed = -10;
+    }
+    
+     if (screenLocation.x < 0) {
+      xspeed = 10;
+    }
+     if (screenLocation.y > height) {
+      yspeed = -10;
+    }
+     if (screenLocation.y < 0) {
+      yspeed = 10;
+    }
+  }
+}
