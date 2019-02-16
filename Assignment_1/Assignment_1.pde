@@ -1,4 +1,6 @@
 ArrayList<Ball> balls;
+float xspeed;
+float yspeed;
 
 void setup() {
   size(640,360);
@@ -16,4 +18,11 @@ void draw() {
   for (Ball b: balls) {
     b.drawBall();
   }
+}
+
+void keyPressed() {
+  for(int i=0; i<10; i++) {
+    Ball b = new Ball();
+    balls.add(b);
+    }
 }
