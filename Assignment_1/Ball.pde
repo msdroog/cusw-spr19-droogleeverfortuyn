@@ -36,9 +36,9 @@ class Ball {
   float xDistance = abs(mouseX - screenLocation.x);
   float yDistance = abs(mouseY - screenLocation.y);
   
-     if (xDistance <= 60 && yDistance <=60) {
-       yspeed = -yspeed;
-       xspeed = -xspeed;
+     if (xDistance <= 20 && yDistance <= 20) {
+       xspeed = xspeed/5;
+       yspeed = yspeed/5;
      }
   }
 }
