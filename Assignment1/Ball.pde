@@ -6,6 +6,7 @@ class Ball {
   float B = random (255);
   float xspeed = random(-10, 10);
   float yspeed = random(-10, 10);
+  int numballs;
   
   Ball() {
     screenLocation = new PVector(random(width), random(height));
@@ -37,8 +38,12 @@ class Ball {
   float yDistance = abs(mouseY - screenLocation.y);
   
      if (xDistance <= 20 && yDistance <= 20) {
-       xspeed = xspeed/5;
-       yspeed = yspeed/5;
+       xspeed = 0;
+       yspeed = 0;
      }
+  }
+  
+  void drawText() {
+    text("number of balls" + numballs + '\n' + " speed in x direction" + xspeed + " speed in y direction" + yspeed, 10, bal + 10);
   }
 }
