@@ -2,7 +2,6 @@ ArrayList<Ball> balls;
 float xspeed;
 float yspeed;
 int numballs;
-int d = 10;
 
 void setup() {
   size(640,360);

@@ -44,7 +44,7 @@ class Ball {
   
   void drawText() {
     fill(255);
-    rect(0, 0, 400, 90);
+    rect(0, 0, 400, 30);
     fill(0);
     text("Number of balls: " + numballs + '\n' + " Speed in x direction " + xspeed + " Speed in y direction " + yspeed, 10, 10);
   }
