@@ -1,6 +1,6 @@
 class Ball {
   PVector screenLocation;
-  float radius = random(0, height/4);
+  float radius = 5;
   float R = random(255);
   float G = random (255);
   float B = random (255);
@@ -15,7 +15,6 @@ class Ball {
     noStroke(); //no circle outline
     fill(R, G, B);
     ellipse(screenLocation.x, screenLocation.y, radius, radius);
-    
     screenLocation.x = screenLocation.x + xspeed;
     screenLocation.y = screenLocation.y + yspeed;
     
@@ -36,16 +35,21 @@ class Ball {
   float xDistance = abs(mouseX - screenLocation.x);
   float yDistance = abs(mouseY - screenLocation.y);
   
-     if (xDistance <= 20 && yDistance <= 20) {
-       xspeed = 0;
-       yspeed = 0;
+     if(xspeed != 0) {
+       if (xDistance <= 20 && yDistance <= 20) {
+         xspeed = 0;
+         yspeed = 0;
+          if (xspeed == 0 && yspeed == 0) {
+             stopballs += 1;
+          }
+       }
      }
   }
   
-  void drawText() {
-    fill(255);
-    rect(0, 0, 400, 30);
-    fill(0);
-    text("Number of balls: " + numballs + '\n' + " Speed in x direction " + xspeed + " Speed in y direction " + yspeed, 10, 10);
-  }
+  //void drawText() {
+  //  fill(255);
+  //  rect(0, 0, 400, 30);
+  //  fill(0);
+  //  text("Number of balls: " + numballs + '\n' + " Speed in x direction " + xspeed + " Speed in y direction " + yspeed, 10, 10);
+  //}
 }
