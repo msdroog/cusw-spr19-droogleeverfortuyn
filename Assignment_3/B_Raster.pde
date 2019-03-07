@@ -5,6 +5,7 @@ class Raster{
   PVector start;
   PVector[][] centers;
   float[][] scores;
+  int score;
   color fill;
   
   Raster(float _size, float _w, float _h){
@@ -43,31 +44,56 @@ class Raster{
           if(p.pointInPolygon(map.getGeo(l))){
             println(p.score);
             scores[i][j] = p.score;
+            score = int(p.score);
+            //println(score);
           }
         }
-        
       }
     }
-    
   }
+  
+//  // getting the maximum value
+//  int getMaxValue(int[] score) {
+//    int maxValue = score[0];
+//    for (int i = 1; i < scores.length; i++) {
+//        if (score[i] > maxValue) {
+//            maxValue = score[i];
+//            println(maxValue);
+//        }
+//    }
+//    return maxValue;
+//}
+
+//// getting the miniumum value
+//  int getMinValue(int[] scores) {
+//    int minValue = scores[0];
+//    for (int i = 1; i < scores.length; i++) {
+//        if (scores[i] < minValue) {
+//            minValue = scores[i];
+//            println(minValue);
+//        }
+//    }
+//    return minValue;
+
+//}
   
   void draw(){
     for(int i = 0; i<numX; i++){
       for(int j = 0; j<numY; j++){
       stroke(0);
       //obviously you could change this to a score situation like the heatmap
-      fill((scores[i][j]));
-          if (scores[i][j] <= 5441) { fill = color(250);
-    }
-    else if (scores[i][j] <= 11398 && scores[i][j] >= 5442) { fill = color(200);
-    }
-    else if (scores[i][j] <= 19864 && scores[i][j] >= 11399) { fill = color(150);
-    }
-    else if (scores[i][j] <= 34669 && scores[i][j] >= 19865) { fill = color(100);
-    }
-    else if (scores[i][j] >= 34670) { fill = color(0);
-    }
-      fill(fill);
+      fill(((scores[i][j])/100));
+    //      if (scores[i][j] <= 5441) { fill = color(250);
+    //}
+    //else if (scores[i][j] <= 11398 && scores[i][j] >= 5442) { fill = color(200);
+    //}
+    //else if (scores[i][j] <= 19864 && scores[i][j] >= 11399) { fill = color(150);
+    //}
+    //else if (scores[i][j] <= 34669 && scores[i][j] >= 19865) { fill = color(100);
+    //}
+    //else if (scores[i][j] >= 34670) { fill = color(0);
+    //}
+    //  fill(fill);
       //fill(255);
       rect(i*(start.x + cellSize), j*(start.y + cellSize), cellSize, cellSize);
       ellipse(centers[i][j].x, centers[i][j].y, 1, 1);
