@@ -50,6 +50,8 @@ ArrayList<Polygon> polygons;
 ArrayList<Polygon> waterpolygons;
 ArrayList<Polygon> buildingspolygon;
 
+boolean incubator = true;
+
 // A function to contain model initialization
 void initModel() {
   
@@ -101,15 +103,37 @@ void setup() {
   
   b.endDraw();
   
+  
+  background(0);
+  drawGISObjects();
+  image(b, 0, 0);
+  
+  
+  //University labels
+  fill(34, 150, 41);
+  text("Henan Agricultural University", 650, 150);
+  text("Henan Police College", 670, 350);
+  text("Henan University of Economics and Law", 600, 550);
+  text("Henan University of Traditional Chinese Medicine", 330, 600);
+  text("North China University of Water Resources and Hydropower", 20, 620);
+  text("Zhengzhou Aviation Industry" + '\n' + "Management College", 20, 350);
+  text("Henan Vocational and Technical College", 20, 200);
+  text("Henan Economic and Trade Vocational College", 250, 50);
+  text("Innovation Island", 370, 350);
+  
+  fill(255);
+  text("Press i to place incubators", 10, 20);
+  text("Press g to place interactive games", 10, 30);
+  
 }
 
 void draw() {
-  background(0);
-  image(b, 0, 0);
+  
+  //image(b, 0, 0);
   
   /* background image from OSM */
   //image(background, 0, 0);
-  drawGISObjects();
+  //drawGISObjects();
   
   /*  Displays the Graph in grayscale */
   //tint(255, 75); // overlaid as an image
@@ -135,23 +159,56 @@ void draw() {
   boolean collisionDetection = true;
   for (Agent p: people) {
     p.update(personLocations(people), collisionDetection);
-    p.display(#FFFFFF, 255);
+    p.display(#FFffff,20);
   }
   
-  //University labels
-  fill(34, 150, 41);
-  text("Henan Agricultural University", 650, 150);
-  text("Henan Police College", 670, 350);
-  text("Henan University of Economics and Law", 600, 550);
-  text("Henan University of Traditional Chinese Medicine", 330, 600);
-  text("North China University of Water Resources and Hydropower", 20, 620);
-  text("Zhengzhou Aviation Industry" + '\n' + "Management College", 20, 350);
-  text("Henan Vocational and Technical College", 20, 200);
-  text("Henan Economic and Trade Vocational College", 250, 50);
   
+  if (incubator == true) {
+    fill(#163693,255);
+    rect(10, 35, 140, 15);
+    fill(255,0,0);
+    text("Placing Incubators", 10, 45);
+  }
+  if (incubator == false) {
+    fill(#163693,255);
+    rect(10, 35, 140, 15);
+    fill(0,255,0);
+    text("Placing Interactive Games", 10, 45);
+  }
   
 }
 
-void keyPressed() {
-  //initModel();
+//void mouseMoved(){
+//  if (incubator == true){
+//    fill(255, 0, 0);
+//    noStroke();
+//    rect(mouseX, mouseY, 20, 20);
+//  }
+//  if (incubator == false){
+//    fill(0, 255, 0);
+//    noStroke();
+//    ellipse(mouseX, mouseY, 20, 20);
+//  }
+//}
+
+void mousePressed(){
+  if (incubator == true){
+    fill(255, 0, 0);
+    noStroke();
+    rect(mouseX, mouseY, 20, 20);
+  }
+  if (incubator == false){
+    fill(0, 255, 0);
+    noStroke();
+    ellipse(mouseX, mouseY, 20, 20);
+  }
+}
+
+void keyReleased() {
+    if (key == 'i') {
+      incubator = true;
+    }
+    if (key == 'g') {
+      incubator = false;
+    }
 }
